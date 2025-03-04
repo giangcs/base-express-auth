@@ -5,9 +5,26 @@ services:
     build: .
     ports:
       - "5000:5000"
+    depends_on:
+      - mongo
     env_file:
       - .env
     volumes:
       - .:/app
       - /app/node_modules
     restart: unless-stopped
+
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
