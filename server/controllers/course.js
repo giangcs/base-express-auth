@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Course from '../models/course';
+import Course from '../models/course.js';
 
 // create new cause
 export function createCourse (req, res) {
